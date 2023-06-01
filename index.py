@@ -1,4 +1,4 @@
-import sys
+#import sys
 #sys.path.append("c:\users\shahidali\appdata\roaming\python\python310\site-packages")
 import win32com.client as win32
 import getpass
@@ -6,9 +6,9 @@ import csv
 
 def get_time_by_subject(subject):
     if subject == 'Start and End Time for LCAP-ExportLoanPdsCompleted Normally':
-        return '4:00 PM'
+        return '4:00 AM'
     elif subject == 'Start and End Time for BatchLoadSAORDTS_CFTFact_dailyCompleted Normally':
-        return '7:00 PM'
+        return '7:00 AM'
     else:
         return ''
 
@@ -28,8 +28,6 @@ def read_outlook_emails(subject, csv_file):
             #print("Body:", item.Body)
             
             body_lines = item.Body.split("\n")
-            
-            #for i in range(0, len(body_lines), 3):
             milestone = body_lines[0].strip()
             start_time = body_lines[1].strip()
             end_time = body_lines[2].strip()
@@ -48,9 +46,9 @@ def read_outlook_emails(subject, csv_file):
                 writer.writerow(["Time", "Milestone", "Status", "Completed Time (Populate miss occurred)"])
                 writer.writerows(rows)
             print(f"CSV file '{csv_file}' created successfully!")
-            break  # Assuming you only want to process the first matching email. If we remove this, it will look for all the emails with matching subject line
+            #break  # Assuming you only want to process the first matching email. If we remove this, it will look for all the emails with matching subject line
 
-    #outlook_app.Quit()
+    outlook_app.Quit()
 
 # Subject search examples
 subject_to_search = [
