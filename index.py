@@ -1,8 +1,12 @@
-import win32com.client
+import sys
+#sys.path.append("c:\users\shahidali\appdata\roaming\python\python310\site-packages")
+
+import win32com.client as win32
+
 import getpass
 
 def read_outlook_emails(subject):
-    outlook_app = win32com.client.Dispatch("Outlook.Application")
+    outlook_app = win32.Dispatch("Outlook.Application")
     namespace = outlook_app.GetNamespace("MAPI")
     inbox = namespace.GetDefaultFolder(6)  # Inbox folder
 
@@ -26,7 +30,7 @@ username = input("Enter your Outlook username: ")
 password = getpass.getpass("Enter your Outlook password: ")
 
 # Authenticate and read emails
-outlook_app = win32com.client.Dispatch("Outlook.Application")
+outlook_app = win32.Dispatch("Outlook.Application")
 namespace = outlook_app.GetNamespace("MAPI")
 namespace.Logon(username, password, True, False)
 
